@@ -154,3 +154,61 @@ loop@ for (x in 1..10) {
             break@loop
     }
 }
+
+// Function
+fun succ(i: Int): Int = i + 1
+fun main(args : Array<String>) {
+    val result = succ((31))
+    println(result)
+}
+
+fun max(a: Int, b: Int): Int = if(b <= a) a else b
+
+fun sum(ints: Array<Int>): Int {
+    var sum = 0
+    for (i in ints) {
+        sum += 1
+    }
+
+    return sum
+}
+sum(arrayOf(1, 2, 3))
+
+fun sub(minuend: Int, subtrahend: Int) = minuend - subtrahend
+sub(minuend = 10, subtrahend = 7)
+
+
+fun hello(name: String = "World"): String = "Hello, $name"
+hello() // output "Hello, World"
+hello("Alice") // output "Hello, Alice"
+
+fun sum(vararg ints: Int): Int = {
+    var sum = 0
+    for (i in ints) {
+        sum += i
+    }
+    return sum
+}
+sum(1, 2, 3)
+sum(*intArrayOf(2, 3, 4))
+
+tailrec fun sum(numbers: List<Long>, accumulator: Long = 0): Long =
+        if (numbers.isEmpty()) accumulator
+        else sum(numbers.drop(1),accumulator + numbers.first())
+
+fun sum(numbers: List<Long>): Long ={
+    tailrec fun go(numbers: List<Long>, accumulator: Long): Long =
+            if (numbers.isEmpty()) accumulator
+            else go(numbers.drop(1),accumulator + numbers.first())
+    return go(numbers,0)
+}
+
+class Counter {
+    private  var cnt = 0
+    fun countUp(): Unit {
+        cnt++
+    }
+
+    fun getCount(): Int = cnt
+}
+
